@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section
+        class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+    <div class="image column">
+        <a href="/programmer">
+            <div class="video-container">
+                <video autoplay muted loop>
+                    <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            type="video/mp4"/>
+                </video>
+                <div class="caption">
+
+                    <div class="text">
+                            <h1>programmer</h1>
+                            <p>click here</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="image column">
+        <a href="/streamer">
+            <div class="video-container">
+                <video autoplay muted loop>
+                    <source
+                            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                            type="video/mp4"/>
+                </video>
+                <div class="caption">
+                    <div class="text">
+
+                        <h1>streamer</h1>
+                        <p>click here</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+{% endblock %}

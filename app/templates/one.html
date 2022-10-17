@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Wrapper -->
+<div id="wrapper" class="divided">
+
+    <!-- posts -->
+    {% for post in posts_list%}
+    <section class=
+                     {% if loop.first %}
+    "banner style1 orient-{{post.orient}} content-align-left image-position-right fullscreen onload-image-fade-in
+    onload-content-fade-right"
+    {% else %}
+    "spotlight style1 orient-{{post.orient}} content-align-left image-position-center onscroll-image-fade-in"
+    {% endif %} >
+    <div class="content">
+        {% if loop.first %}
+        <h1>{{post.title}}</h1>
+        {% else %}
+        <h2>{{post.title}}</h2>
+        {% endif %}
+
+        <p {% if loop.first %}class="major" {% endif %}>{{post.text}}</p>
+        {% if post.button_name %}
+        <ul class="actions vertical">
+            <li><a href="{{post.button_url}}" class={% if loop.first %}"button big wide smooth-scroll-middle"{% else
+                %}"button"{% endif %}>{{post.button_name}}</a>
+            </li>
+        </ul>
+        {% endif %}
+
+    </div>
+    <div class="image">
+        <img src="{{ url_for('static', filename='images/banner.jpg')}}" alt=""/>
+    </div>
+    </section>
+    {% endfor %}
+
+    <!-- more info -->
+    <section class="wrapper style1 align-center">
+        <div class="inner">
+            <h2>{{ more_info.title }}</h2>
+            <p>{{ more_info.text }}</p>
+        </div>
+
+    </section>
+
+
+    <!-- contacts -->
+    <section class="wrapper style1 align-center" id="contact">
+        <div class="inner medium">
+            <h2>Напиши мне</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="{{ category }}"> {{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form method="post" action="#contact">
+                {{ form.hidden_tag() }}
+                <div class="field half first">
+                    {{ form.name.label }}
+                    {{ form.name(size=32) }}
+                    {% for error in form.name.errors %}
+                    <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="field half">
+                    {{ form.email.label }}
+                    {{ form.email(size=32) }}
+                    {% for error in form.email.errors %}
+                    <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="field">
+                    {{ form.messages.label }}
+                    {{ form.messages(cols=50, rows=6) }}
+                    {% for error in form.messages.errors %}
+                    <div class="error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="field recaptcha">
+                    {{ form.recaptcha }}
+                </div>
+                <ul class="actions">
+                    <li> {{ form.submit() }}</li>
+                </ul>
+            </form>
+
+        </div>
+    </section>
+
+
+    {% endblock %}
+</div>

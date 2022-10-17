@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <script>
+        window.onload = function () {
+            document.body.classList.add('loaded_hiding');
+            window.setTimeout(function () {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loaded_hiding');
+            }, 500);
+        }
+    </script>
+</head>
+
+<body>
+<div class="preloader">
+    <div class="preloader__row">
+        <div class="preloader__item"></div>
+        <div class="preloader__item"></div>
+    </div>
+</div>
+
+{% block content %}
+
+{% endblock content %}
+
+{% include "_footer.html" %}
+</div>
+
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.scrollex.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/skel.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/util.js')}}"></script>
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</body>
+
+</html>
